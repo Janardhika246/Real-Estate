@@ -8,7 +8,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-API_KEY = os.getenv('yDgFEZO0g76kMWiy6ADBnB0AojzF2E')
+API_KEY = os.getenv('REPLIERS_KEY')
 
 @app.route('/')
 def home():
