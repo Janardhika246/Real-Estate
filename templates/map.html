@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map View</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/userstyles.css">
+    <style>
+        .listings-panel {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            transition: height 0.3s ease;
+            height: 10vh;
+            z-index: 1000;
+            border-top-right-radius: 30px;
+            border-top-left-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 16px;
+        }
+
+        .listings-header {
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+            border-top: 1px solid #ccc;
+            margin-bottom: 5px;
+        }
+
+        .listings-container {
+            overflow-y: auto;
+            height: 90%;
+        }
+
+        .listing-card {
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.3) 5px 2px 8px;
+        }
+
+        .listing-card img {
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .listing-card div {
+            flex-grow: 1;
+        }
+
+        .status-tag-map {
+            position: relative;
+            top: 0;
+            left: 81%;
+            padding: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 4px;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+
+        .header {
+            width: 100%;
+            background: #f8f8f8;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1050;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .map-container {
+            padding-top: 50px; /* Space for header */
+        }
+
+        .listings-panel {
+            transition: height 0.3s ease;
+            height: 10vh;
+            z-index: 1000;
+            border-top-right-radius: 30px;
+            border-top-left-radius: 30px;
+            box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 16px;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="filter-bar">
+            <select>
+                <option>For Sale</option>
+                <option>For Rent</option>
+            </select>
+            <select>
+                <option>All</option>
+                <option>Active</option>
+                <option>Sold</option>
+            </select>
+        </div>
+    </header>
+    <div id="map" style="height: 90vh;"></div>
+    <div id="listings-panel" class="listings-panel">
+        <div class="listings-header" onclick="toggleListingsPanel()">
+            <span id="listings-count"> listings</span>
+        </div>
+        <div id="listings-container" class="listings-container">
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        function toggleListingsPanel() {
+            var panel = document.getElementById('listings-panel');
+            if (panel.style.height === '80vh') {
+                panel.style.height = '10vh';
+            } else {
+                panel.style.height = '80vh';
+            }
+        }
+
+        var map = L.map('map').setView([43.7, -79.4], 10);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var markersLayer = L.layerGroup().addTo(map);
+
+        function fetchData() {
+            const zoom = map.getZoom();
+            const cluster = zoom < 15;
+            const url = `/get_listings?cluster=${cluster}&precision=10&limit=10`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    markersLayer.clearLayers();
+                    if (cluster) {
+                        displayClusters(data);
+                    } else {
+                        displayListings(data);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayClusters(data) {
+            data.aggregates.map.clusters.forEach(cluster => {
+                L.circle([cluster.location.latitude, cluster.location.longitude], {
+                    color: 'green',
+                    fillColor: '#0f0',
+                    fillOpacity: 0.5,
+                    radius: Math.sqrt(cluster.count) * 100
+                }).bindPopup(`Listings: ${cluster.count}`).addTo(markersLayer);
+            });
+        }
+
+        function displayListings(data) {
+            const listingsContainer = document.getElementById('listings-container');
+            listingsContainer.innerHTML = '';
+            const countLabel = document.getElementById('listings-count');
+            countLabel.innerText = `${data.listings.length}/${data.count} listings`;
+
+            data.listings.forEach(listing => {
+                const listingCard = document.createElement('div');
+                listingCard.className = 'listing-card';
+                let priceHTML = `<h4>$${listing.listPrice.toLocaleString()}</h4>`;
+                if (listing.lastStatus === "Sld") {
+                    priceHTML += `<p class="original-price">$${listing.originalPrice.toLocaleString()}</p>`;
+                }
+
+                const statusColors = {
+                    Sld: { bg: 'rgba(231, 16, 0, 0.1)', color: 'rgb(231, 16, 0)' },
+                    New: { bg: 'rgba(0, 128, 0, 0.1)', color: 'rgb(0, 128, 0)' },
+                };
+
+                const statusStyle = statusColors[listing.lastStatus] || { bg: 'rgba(0, 0, 0, 0.1)', color: 'rgb(0, 0, 0)' };
+
+                listingCard.innerHTML = `
+                    <img src="https://cdn.repliers.io/${listing.images[0]}" alt="Listing Image">
+                    <div class="listing-info">
+                        ${priceHTML}
+                        <p>${listing.address.streetAddress}, ${listing.address.municipality}</p>
+                        <p>${listing.details.numBedrooms} bd | ${listing.details.numBathrooms} ba | ${listing.details.sqft.toLocaleString()} sqft</p>
+                    </div>
+                    <div class="status-tag-map" style="background-color: ${statusStyle.bg}; color: ${statusStyle.color};">${listing.lastStatus}</div>
+                `;
+                listingsContainer.appendChild(listingCard);
+
+                const marker = L.marker([listing.address.latitude, listing.address.longitude]).addTo(markersLayer);
+                marker.bindPopup(`
+                    <h4>${listing.details.propertyType}</h4>
+                    <p>${listing.address.streetAddress}, ${listing.address.municipality}</p>
+                    ${priceHTML}
+                `);
+            });
+        }
+
+        map.on('moveend', fetchData);
+        fetchData();
+    </script>
+</body>
+</html>
