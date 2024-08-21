@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Map Search</title>
+</head>
+<body>
+    <h1>Real Estate Map Search</h1>
+    <form id="mapSearchForm">
+        <label for="map">Map Data (GeoJSON format):</label>
+        <textarea id="map" name="map" rows="6" required></textarea>
+        
+        <label for="mapOperator">Map Operator (Optional):</label>
+        <select id="mapOperator" name="mapOperator">
+            <option value="OR">OR</option>
+            <option value="AND">AND</option>
+        </select>
+        
+        <button type="submit">Search Listings</button>
+    </form>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('mapSearchForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const mapData = document.getElementById('map').value;
+            const mapOperator = document.getElementById('mapOperator').value;
+
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    map: JSON.parse(mapData),
+                    mapOperator: mapOperator
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('results').innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
