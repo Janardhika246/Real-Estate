@@ -12,11 +12,11 @@ API_ENDPOINT = 'https://api.repliers.io/listings'
 
 @app.route('/')
 def index():
-    return render_template('map.html')
+    return render_template('index.html')
 
 @app.route('/get_listings')
 def get_listings():
-    cluster = request.args.get('cluster', 'true')  # Control clustering with a query parameter
+    cluster = request.args.get('cluster', 'true')
     precision = request.args.get('precision', '10')
     limit = request.args.get('limit', '10')
     
@@ -28,7 +28,7 @@ def get_listings():
         'cluster': cluster,
         'clusterPrecision': precision,
         'clusterLimit': limit,
-        'listings': True, # Fetch detailed listings if not clustering
+        'listings': True,
         'hasImages': True
     }
 
@@ -41,6 +41,31 @@ def get_listings():
         return jsonify(response.json())
     else:
         return jsonify({'error': f'Failed to fetch data. Status code: {response.status_code}'}), 500
+
+@app.route('/search')
+def search():
+    return render_template('map.html')
+
+@app.route('/markettrends')
+def markettrends():
+    return render_template('markettrends.html')
+
+@app.route('/homevalues')
+def homevalues():
+    return render_template('homevalues.html')
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        pass
+    return render_template('login.html')
+
+@app.route('/join', methods=['GET', 'POST'])
+def join():
+    if request.method == 'POST':
+        # Handle join logic
+        pass
+    return render_template('join.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

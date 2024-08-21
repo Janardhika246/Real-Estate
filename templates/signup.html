@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="register-page">
+    <div class="container">
+        <h2>Create an account</h2>
+        <form action="{{ url_for('register') }}" method="post">
+            {% if message %}
+                <div class="alert {{ 'alert-warning' if 'already exists' in message else 'alert-success' }}">{{ message }}</div>
+            {% endif %}
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="email">Enter Your Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Enter Password:</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+            </div>
+            <button type="submit" class="btn btn-primary">Next</button>
+            <p> or </p>
+            <a href="{{ url_for('Google') }}">Google</a>
+            <p class="bottom">Already registered? <a class="bottom" href="{{ url_for('login') }}">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>
