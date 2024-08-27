@@ -19,7 +19,7 @@ def get_listings():
     cluster = request.args.get('cluster', 'true')
     precision = request.args.get('precision', '10')
     limit = request.args.get('limit', '10')
-
+    
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
@@ -42,18 +42,9 @@ def get_listings():
     response = requests.get(api_url, headers=headers, params=params)
     
     if response.status_code == 200:
-        data = response.json()
-        
-        # Add cluster count data if available
-        # This assumes you have a 'clusters' field in your response
-        if 'clusters' in data:
-            for cluster in data['clusters']:
-                cluster['count'] = len(cluster['listings'])  # Example aggregation
-            
-        return jsonify(data)
+        return jsonify(response.json())
     else:
         return jsonify({'error': f'Failed to fetch data. Status code: {response.status_code}'}), 500
-
 
 @app.route('/search')
 def search():
