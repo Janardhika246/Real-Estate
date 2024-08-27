@@ -89,17 +89,6 @@
         .map-container {
             padding-top: 50px; /* Space for header */
         }
-
-        .listings-panel {
-            transition: height 0.3s ease;
-            height: 10vh;
-            z-index: 1000;
-            border-top-right-radius: 30px;
-            border-top-left-radius: 30px;
-            box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 16px;
-        }
-
-        
     </style>
 </head>
 <body>
@@ -152,24 +141,9 @@
                 .then(response => response.json())
                 .then(data => {
                     markersLayer.clearLayers();
-                    if (cluster) {
-                        displayListings(data);
-                    } else {
-                        displayListings(data);
-                    }
+                    displayListings(data);
                 })
                 .catch(error => console.error('Error:', error));
-        }
-
-        function displayClusters(data) {
-            data.aggregates.map.clusters.forEach(cluster => {
-                L.circle([cluster.location.latitude, cluster.location.longitude], {
-                    color: 'green',
-                    fillColor: '#0f0',
-                    fillOpacity: 0.5,
-                    radius: Math.sqrt(cluster.count) * 100
-                }).bindPopup(`Listings: ${cluster.count}`).addTo(markersLayer);
-            });
         }
 
         function displayListings(data) {
@@ -181,10 +155,6 @@
             data.listings.forEach(listing => {
                 const listingCard = document.createElement('div');
                 listingCard.className = 'listing-card';
-                // let priceHTML = `<h4>$${listing.listPrice.toLocaleString()}</h4>`;
-                // if (listing.lastStatus === "Sld") {
-                //     priceHTML += `<p class="original-price">$${listing.originalPrice.toLocaleString()}</p>`;
-                // }
 
                 const statusColors = {
                     Sld: { bg: 'rgba(231, 16, 0, 0.1)', color: 'rgb(231, 16, 0)' },
@@ -193,23 +163,27 @@
 
                 const statusStyle = statusColors[listing.lastStatus] || { bg: 'rgba(0, 0, 0, 0.1)', color: 'rgb(0, 0, 0)' };
 
+                // Extract the address details
+                const address = listing.address || {};
+                const fullAddress = `${address.houseNumber || ''} ${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zip || ''}`.trim();
+
                 listingCard.innerHTML = `
                     <img src="https://cdn.repliers.io/${listing.images[0]}" alt="Listing Image">
                     <div class="listing-info">
-                       
-                       
-                        <p>${listing.details.numBedrooms} bd | ${listing.details.numBathrooms} ba | 
-                             sqft</p>
+                        <h4>${fullAddress}</h4>
+                        <p>${listing.details.numBedrooms} bd | ${listing.details.numBathrooms} ba | ${listing.details.sqft} sqft</p>
                     </div>
                     <div class="status-tag-map" style="background-color: ${statusStyle.bg}; color: ${statusStyle.color};">${listing.lastStatus}</div>
                 `;
                 listingsContainer.appendChild(listingCard);
 
-                const marker = L.marker([listing.map.latitude, listing.map.longitude]).addTo(markersLayer);
+                // Add a marker to the map
+                const latitude = listing.map.latitude;
+                const longitude = listing.map.longitude;
+                const marker = L.marker([latitude, longitude]).addTo(markersLayer);
                 marker.bindPopup(`
                     <h4>${listing.details.propertyType}</h4>
-
-              
+                    <p>${fullAddress}</p>
                 `);
             });
         }

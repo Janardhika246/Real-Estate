@@ -21,12 +21,11 @@ def get_listings():
     limit = request.args.get('limit', '10')
     
     headers = {
-    "accept": "application/json",
-    "content-type": "application/json",
-    "REPLIERS-API-KEY": API_KEY
+        "accept": "application/json",
+        "content-type": "application/json",
+        "REPLIERS-API-KEY": API_KEY
     }
 
-    
     params = {
         'cluster': cluster,
         'clusterPrecision': precision,
@@ -35,9 +34,11 @@ def get_listings():
         'hasImages': True
     }
 
-    result_fields = "address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],details.numBedrooms,details.numBathrooms,details.sqft,details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource"
-    
-    api_url = f'https://api.repliers.io/listings?fields={result_fields}'
+    result_fields = ("address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],"
+                     "details.numBedrooms,details.numBathrooms,details.sqft,"
+                     "details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource")
+
+    api_url = f'{API_ENDPOINT}?fields={result_fields}'
     response = requests.get(api_url, headers=headers, params=params)
     
     if response.status_code == 200:
@@ -66,7 +67,6 @@ def login():
 @app.route('/join', methods=['GET', 'POST'])
 def join():
     if request.method == 'POST':
-        # Handle join logic
         pass
     return render_template('join.html')
 
