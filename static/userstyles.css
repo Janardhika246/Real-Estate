@@ -1,0 +1,192 @@
+@media (min-width: 769px) { /* Ensures this style only applies to non-mobile views */
+    .search-results-header {
+        display: block; /* Shown in web view */
+        position: relative; /* Position relative to its normal position */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+        border-radius: 8px; /* Rounded corners */
+        }
+    .results-search-bar{
+        display: none!important;
+    }
+
+    .container {
+        width: calc(100% - 410px);
+    padding: 10px;
+
+    }
+}
+
+
+.back-button {
+    padding: 10px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.results-search-bar {
+    display: flex;
+    padding: 10px;
+}
+
+.results-search-bar input {
+    flex-grow: 1;
+    padding: 8px;
+}
+
+.results-search-bar button {
+    padding: 8px;
+}
+
+.results-tabs {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f8f8;
+}
+
+.results-tab {
+    padding: 10px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.results-tab.active {
+    color: #007BFF; /* Highlight color for the active tab */
+}
+
+.results-container {
+    position: relative; /* if needed for positioning */
+    max-height: 1000px; /* adjust as necessary based on your layout */
+    overflow-y: scroll; /* enables vertical scrolling */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9; /* subtle background color, optional */
+}
+
+/* Style for thin scrollbar */
+.results-container::-webkit-scrollbar {
+    width: 8px; /* thin scrollbar width */
+}
+
+.results-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* track color */
+}
+
+.results-container::-webkit-scrollbar-thumb {
+    background: #888; /* thumb color */
+}
+
+.results-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* thumb color when hovered */
+}
+
+.listing {
+    background: #ffffff;
+    border-radius: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.status-tag {
+    position: absolute;
+    top: 10px; /* Adjust as necessary */
+    right: 10px; /* Adjust as necessary */
+    padding: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase; /* Style as tag */
+    border-radius: 4px; /* Rounded corners */
+    box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+    white-space: nowrap; /* Ensure the text does not wrap */
+}
+
+.listing img {
+    width: 100px; /* adjust as necessary */
+    height: 100px;
+    object-fit: cover;
+    margin-right: 8px;
+}
+
+.listing-info {
+    flex-grow: 1;
+}
+
+.listing-info h4 {
+    margin: auto;
+    display: inline-block;
+    /* margin-right: 10px; */
+}
+
+.listing-info .original-price {
+    display: inline-block; /* Ensure this is also inline */
+    text-decoration: line-through;
+    color: grey;
+    font-size: 0.9em; /* Slightly smaller than the listing price */
+}
+
+.listing-info p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.listing-details {
+    letter-spacing: 1px;
+    font-size: small;
+}
+
+.listing-details i {
+    font-weight: 500;
+}
+/* Dynamic status colors */
+.listing[data-status="Sld"] .status {
+    color: red;
+}
+
+.listing[data-status="Exp"] .status {
+    color: grey;
+}
+
+.listing[data-status="New"],
+.listing[data-status="Act"] {
+    color: green;
+}
+
+
+.listing-info h4 {
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: large;
+}
+
+.original-price {
+    display: inline-block; /* Ensure this is also inline */
+    text-decoration: line-through;
+    color: grey;
+    font-size: 0.9em; /* Slightly smaller than the listing price */
+}
+
+/* You can add specific styles based on the status if needed */
+.listing[data-status="Sld"] .listing-info h4,
+.listing[data-status="Sld"] .original-price {
+    font-weight: 500; /* Example of styling based on status */
+}
+
+/* Add similar rules for other statuses */
+
+
+@media (max-width: 768px) {
+    .web-nav {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: flex;
+    }
+}

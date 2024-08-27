@@ -153,7 +153,7 @@
                 .then(data => {
                     markersLayer.clearLayers();
                     if (cluster) {
-                        displayClusters(data);
+                        displayListings(data);
                     } else {
                         displayListings(data);
                     }
@@ -181,10 +181,10 @@
             data.listings.forEach(listing => {
                 const listingCard = document.createElement('div');
                 listingCard.className = 'listing-card';
-                let priceHTML = `<h4>$${listing.listPrice.toLocaleString()}</h4>`;
-                if (listing.lastStatus === "Sld") {
-                    priceHTML += `<p class="original-price">$${listing.originalPrice.toLocaleString()}</p>`;
-                }
+                // let priceHTML = `<h4>$${listing.listPrice.toLocaleString()}</h4>`;
+                // if (listing.lastStatus === "Sld") {
+                //     priceHTML += `<p class="original-price">$${listing.originalPrice.toLocaleString()}</p>`;
+                // }
 
                 const statusColors = {
                     Sld: { bg: 'rgba(231, 16, 0, 0.1)', color: 'rgb(231, 16, 0)' },
@@ -196,19 +196,20 @@
                 listingCard.innerHTML = `
                     <img src="https://cdn.repliers.io/${listing.images[0]}" alt="Listing Image">
                     <div class="listing-info">
-                        ${priceHTML}
-                        <p>${listing.address.streetAddress}, ${listing.address.municipality}</p>
-                        <p>${listing.details.numBedrooms} bd | ${listing.details.numBathrooms} ba | ${listing.details.sqft.toLocaleString()} sqft</p>
+                       
+                       
+                        <p>${listing.details.numBedrooms} bd | ${listing.details.numBathrooms} ba | 
+                             sqft</p>
                     </div>
                     <div class="status-tag-map" style="background-color: ${statusStyle.bg}; color: ${statusStyle.color};">${listing.lastStatus}</div>
                 `;
                 listingsContainer.appendChild(listingCard);
 
-                const marker = L.marker([listing.address.latitude, listing.address.longitude]).addTo(markersLayer);
+                const marker = L.marker([listing.map.latitude, listing.map.longitude]).addTo(markersLayer);
                 marker.bindPopup(`
                     <h4>${listing.details.propertyType}</h4>
-                    <p>${listing.address.streetAddress}, ${listing.address.municipality}</p>
-                    ${priceHTML}
+
+              
                 `);
             });
         }

@@ -21,8 +21,11 @@ def get_listings():
     limit = request.args.get('limit', '10')
     
     headers = {
-        'Authorization': f'Bearer {API_KEY}'
+    "accept": "application/json",
+    "content-type": "application/json",
+    "REPLIERS-API-KEY": API_KEY
     }
+
     
     params = {
         'cluster': cluster,
@@ -32,7 +35,7 @@ def get_listings():
         'hasImages': True
     }
 
-    result_fields = "address.,mlsNumber,listPrice,originalPrice,images[1],details.numBedrooms,details.numBathrooms,details.sqft,details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource"
+    result_fields = "address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],details.numBedrooms,details.numBathrooms,details.sqft,details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource"
     
     api_url = f'https://api.repliers.io/listings?fields={result_fields}'
     response = requests.get(api_url, headers=headers, params=params)
