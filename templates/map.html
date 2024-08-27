@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Map View</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="stylesheet" href="/static/userstyles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
+        #map {
+            height: 90vh;
+        }
+
+        .custom-cluster-marker {
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            text-align: center;
+            line-height: 1.5em;
+        }
+
         .listings-panel {
             position: fixed;
             bottom: 0;
@@ -67,28 +78,6 @@
             box-shadow: 0 2px 3px rgba(0,0,0,0.1);
             white-space: nowrap;
         }
-
-        .header {
-            width: 100%;
-            background: #f8f8f8;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1050;
-        }
-
-        .filter-bar {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .map-container {
-            padding-top: 50px; /* Space for header */
-        }
     </style>
 </head>
 <body>
@@ -105,7 +94,7 @@
             </select>
         </div>
     </header>
-    <div id="map" style="height: 90vh;"></div>
+    <div id="map"></div>
     <div id="listings-panel" class="listings-panel">
         <div class="listings-header" onclick="toggleListingsPanel()">
             <span id="listings-count"> listings</span>
@@ -113,7 +102,7 @@
         <div id="listings-container" class="listings-container">
         </div>
     </div>
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script>
         function toggleListingsPanel() {
             var panel = document.getElementById('listings-panel');
@@ -163,7 +152,6 @@
 
                 const statusStyle = statusColors[listing.lastStatus] || { bg: 'rgba(0, 0, 0, 0.1)', color: 'rgb(0, 0, 0)' };
 
-                // Extract the address details
                 const address = listing.address || {};
                 const fullAddress = `${address.houseNumber || ''} ${address.street || ''}, ${address.city || ''}, ${address.state || ''} ${address.zip || ''}`.trim();
 
@@ -180,11 +168,33 @@
                 // Add a marker to the map
                 const latitude = listing.map.latitude;
                 const longitude = listing.map.longitude;
-                const marker = L.marker([latitude, longitude]).addTo(markersLayer);
-                marker.bindPopup(`
-                    <h4>${listing.details.propertyType}</h4>
-                    <p>${fullAddress}</p>
-                `);
+                const count = listing.count || 0; // Ensure count is defined and not undefined
+                const marker = createClusterMarker(count);  // Create a custom cluster marker
+                L.marker([latitude, longitude], { icon: marker }).addTo(markersLayer)
+                    .bindPopup(`
+                        <h4>${listing.details.propertyType}</h4>
+                        <p>${fullAddress}</p>
+                    `);
+            });
+        }
+
+        function createClusterMarker(count) {
+            return L.divIcon({
+                html: `<div style="
+                    background-color: rgba(0, 128, 0, 0.8); 
+                    color: white; 
+                    border-radius: 50%; 
+                    width: 40px; 
+                    height: 40px; 
+                    display: flex; 
+                    align-items: center; 
+                    justify-content: center; 
+                    font-size: 16px;
+                    font-weight: bold;">
+                    ${count}
+                </div>`,
+                className: 'custom-cluster-marker', // Custom class name for additional styling
+                iconSize: [40, 40]  // Size of the custom icon
             });
         }
 
