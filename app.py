@@ -19,7 +19,9 @@ def get_listings():
     cluster = request.args.get('cluster', 'true')
     precision = request.args.get('precision', '10')
     limit = request.args.get('limit', '10')
-    
+    min_price = request.args.get('minPrice', '1')
+    max_price = request.args.get('maxPrice', '10000000')
+
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
@@ -31,7 +33,9 @@ def get_listings():
         'clusterPrecision': precision,
         'clusterLimit': limit,
         'listings': True,
-        'hasImages': True
+        'hasImages': True,
+        'minPrice': min_price,
+        'maxPrice': max_price
     }
 
     result_fields = ("address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],"
