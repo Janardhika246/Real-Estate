@@ -263,6 +263,41 @@
             </div>
             <button onclick="fetchData()">Apply</button>
         </div>
+        <div class="filter-section">
+            <select id="bedrooms">
+                <option value="">Bedrooms</option>
+                <option value="0">0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+            <select id="bathrooms">
+                <option value="">Bathrooms</option>
+                <option value="0">0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+            <select id="basement">
+                <option value="">Basement</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+            <select id="garage">
+                <option value="">Garage/Covered Parking</option>
+                <option value="0">0+</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5+</option>
+            </select>
+            <button onclick="fetchData()">Apply</button>
+        </div>
     </header>
     <div id="map" style="height: 90vh;"></div>
     <div id="listings-panel" class="listings-panel">
@@ -297,7 +332,11 @@
             const cluster = zoom < 15;
             let minPrice = document.getElementById('minPrice').value || 1;
             let maxPrice = document.getElementById('maxPrice').value || 10000000;
-            const url = `/get_listings?cluster=${cluster}&precision=10&limit=10&minPrice=${minPrice}&maxPrice=${maxPrice}`;
+            let bedrooms = document.getElementById('bedrooms').value;
+            let bathrooms = document.getElementById('bathrooms').value;
+            let basement = document.getElementById('basement').value;
+            let garage = document.getElementById('garage').value;
+            const url = `/get_listings?cluster=${cluster}&precision=10&limit=10&minPrice=${minPrice}&maxPrice=${maxPrice}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&basement=${basement}&garage=${garage}`;
        
 
             fetch(url)

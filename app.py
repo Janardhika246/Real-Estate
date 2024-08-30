@@ -21,6 +21,12 @@ def get_listings():
     limit = request.args.get('limit', '10')
     min_price = request.args.get('minPrice', '1')
     max_price = request.args.get('maxPrice', '10000000')
+    property_type = request.args.get('propertyType')  # Use camelCase to match HTML
+    status = request.args.get('statusFilter')  # Use statusFilter to match HTML
+    bedrooms = request.args.get('bedrooms')
+    bathrooms = request.args.get('bathrooms')
+    basement = request.args.get('basement')
+    garage = request.args.get('garage')
 
     headers = {
         "accept": "application/json",
@@ -35,7 +41,13 @@ def get_listings():
         'listings': True,
         'hasImages': True,
         'minPrice': min_price,
-        'maxPrice': max_price
+        'maxPrice': max_price,
+        'propertyType': property_type,
+        'statusFilter': status,  # Adjusted to match parameter name
+        'bedrooms': bedrooms,
+        'bathrooms': bathrooms,
+        'basement': basement,
+        'garage': garage        
     }
 
     result_fields = ("address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],"
@@ -43,12 +55,13 @@ def get_listings():
                      "details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource")
 
     api_url = f'{API_ENDPOINT}?fields={result_fields}'
-    response = requests.get(api_url, headers=headers, params=params)
-    
-    if response.status_code == 200:
+    try:
+        response = requests.get(api_url, headers=headers, params=params)
+        response.raise_for_status()
         return jsonify(response.json())
-    else:
-        return jsonify({'error': f'Failed to fetch data. Status code: {response.status_code}'}), 500
+    except requests.RequestException as e:
+        return jsonify({'error': f'Failed to fetch data. Error: {str(e)}'}), 500
+
 
 @app.route('/search')
 def search():
