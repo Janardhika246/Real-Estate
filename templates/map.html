@@ -264,7 +264,7 @@
             <button onclick="fetchData()">Apply</button>
         </div>
         <div class="filter-section">
-            <select id="bedrooms">
+            <select id="numBedrooms">
                 <option value="">Bedrooms</option>
                 <option value="0">0+</option>
                 <option value="1">1</option>
@@ -273,7 +273,7 @@
                 <option value="4">4</option>
                 <option value="5">5+</option>
             </select>
-            <select id="bathrooms">
+            <select id="numBathrooms">
                 <option value="">Bathrooms</option>
                 <option value="0">0+</option>
                 <option value="1">1</option>
@@ -284,17 +284,22 @@
             </select>
             <select id="basement">
                 <option value="">Basement</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
+                <option value="Finished">Finished</option>
+                <option value="Separate Entrance">Separate Entrance</option>
+                <option value="walk-out">walk-out</option>
             </select>
-            <select id="garage">
-                <option value="">Garage/Covered Parking</option>
+            <select id="numGarageSpaces">
+                <option value="">Garage Spaces</option>
                 <option value="0">0+</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5+</option>
+            </select>
+            <select id="garage">
+                <option value="">Garage</option>
+                <option value="0">Underground</option>
             </select>
             <button onclick="fetchData()">Apply</button>
         </div>
@@ -332,11 +337,12 @@
             const cluster = zoom < 15;
             let minPrice = document.getElementById('minPrice').value || 1;
             let maxPrice = document.getElementById('maxPrice').value || 10000000;
-            let bedrooms = document.getElementById('bedrooms').value;
-            let bathrooms = document.getElementById('bathrooms').value;
+            let numBedrooms = document.getElementById('numBedrooms').value || 2;
+            let numBathrooms = document.getElementById('numBathrooms').value || 2;
             let basement = document.getElementById('basement').value;
-            let garage = document.getElementById('garage').value;
-            const url = `/get_listings?cluster=${cluster}&precision=10&limit=10&minPrice=${minPrice}&maxPrice=${maxPrice}&bedrooms=${bedrooms}&bathrooms=${bathrooms}&basement=${basement}&garage=${garage}`;
+            let garage = document.getElementById('garage').value ;
+            let numGarageSpaces = document.getElementById('numGarageSpaces').value || 2;
+            const url = `/get_listings?cluster=${cluster}&precision=10&limit=10&minPrice=${minPrice}&maxPrice=${maxPrice}&numBedrooms=${numBedrooms}&numBathrooms=${numBathrooms}&basement=${basement}&numGarageSpaces=${numGarageSpaces}&garage=${garage}`;
        
 
             fetch(url)

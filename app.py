@@ -23,9 +23,10 @@ def get_listings():
     max_price = request.args.get('maxPrice', '10000000')
     property_type = request.args.get('propertyType')  # Use camelCase to match HTML
     status = request.args.get('statusFilter')  # Use statusFilter to match HTML
-    bedrooms = request.args.get('bedrooms')
-    bathrooms = request.args.get('bathrooms')
+    numBedrooms = request.args.get('numBedrooms')
+    numBathrooms = request.args.get('numBathrooms')
     basement = request.args.get('basement')
+    numGarageSpaces = request.args.get('numGarageSpaces')
     garage = request.args.get('garage')
 
     headers = {
@@ -44,15 +45,16 @@ def get_listings():
         'maxPrice': max_price,
         'propertyType': property_type,
         'statusFilter': status,  # Adjusted to match parameter name
-        'bedrooms': bedrooms,
-        'bathrooms': bathrooms,
+        'numBedrooms': numBedrooms,
+        'numBathrooms': numBathrooms,
         'basement': basement,
+        'numGarageSpaces': numGarageSpaces,
         'garage': garage        
     }
 
     result_fields = ("address.*,map.*,mlsNumber,listPrice,originalPrice,images[1],"
                      "details.numBedrooms,details.numBathrooms,details.sqft,"
-                     "details.numGarageSpaces,details.propertyType,lastStatus,lot.,resource")
+                     "details.numGarageSpaces,details.propertyType,details.garage,lastStatus,lot.,resource")
 
     api_url = f'{API_ENDPOINT}?fields={result_fields}'
     try:
