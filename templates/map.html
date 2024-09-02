@@ -9,243 +9,36 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css" />
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='users.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/static/userstyles.css">
 
-    <style>
-        .listings-panel {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            transition: height 0.3s ease;
-            height: 10vh;
-            z-index: 1000;
-            border-top-right-radius: 30px;
-            border-top-left-radius: 30px;
-            box-shadow: rgba(0, 0, 0, 0.3) 0px -2px 16px;
-        }
-
-        .listings-header {
-            padding: 10px;
-            cursor: pointer;
-            text-align: center;
-            font-size: 16px;
-            border-top: 1px solid #ccc;
-            margin-bottom: 5px;
-        }
-
-        .listings-container {
-            overflow-y: auto;
-            height: 90%;
-        }
-
-        .listing-card {
-            margin-bottom: 4px;
-            display: flex;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: rgba(0, 0, 0, 0.3) 5px 2px 8px;
-        }
-
-        .listing-card img {
-            width: 100px;
-            height: 100px;
-            margin-right: 10px;
-            object-fit: cover;
-        }
-
-        .listing-card div {
-            flex-grow: 1;
-        }
-
-        .status-tag-map {
-            position: relative;
-            top: 0;
-            left: 81%;
-            padding: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 4px;
-            box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
-        }
-
-        .header {
-            width: 100%;
-            background: #f8f8f8;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1050;
-        }
-
-        .filter-bar {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: auto;
-        }
-
-        .map-container {
-            padding-top: 50px;
-            /* Space for header */
-        }
-
-        ::selection {
-            color: #fff;
-            background: #17A2B8;
-        }
-
-        .wrapper {
-            width: 400px;
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px 25px 40px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        header h2 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        header p {
-            margin-top: 5px;
-            font-size: 16px;
-        }
-
-        .price-input {
-            width: 100%;
-            display: flex;
-            margin: 30px 0 35px;
-        }
-
-        .price-input .field {
-            display: flex;
-            width: 100%;
-            height: 45px;
-            align-items: center;
-        }
-
-        .field input {
-            width: 100%;
-            height: 100%;
-            outline: none;
-            font-size: 19px;
-            margin-left: 12px;
-            border-radius: 5px;
-            text-align: center;
-            border: 1px solid #999;
-            -moz-appearance: textfield;
-        }
-
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-        }
-
-        .price-input .separator {
-            width: 130px;
-            display: flex;
-            font-size: 19px;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .slider {
-            height: 5px;
-            position: relative;
-            background: #ddd;
-            border-radius: 5px;
-        }
-
-        .slider .progress {
-            height: 100%;
-            left: 25%;
-            right: 25%;
-            position: absolute;
-            border-radius: 5px;
-            background: #17A2B8;
-        }
-
-        .range-input {
-            position: relative;
-        }
-
-        .range-input input {
-            position: absolute;
-            width: 100%;
-            height: 5px;
-            top: -5px;
-            background: none;
-            pointer-events: none;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            height: 17px;
-            width: 17px;
-            border-radius: 50%;
-            background: #17A2B8;
-            pointer-events: auto;
-            -webkit-appearance: none;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            height: 17px;
-            width: 17px;
-            border: none;
-            border-radius: 50%;
-            background: #17A2B8;
-            pointer-events: auto;
-            -moz-appearance: none;
-            box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-        }
-
-        .price-ticks {
-            padding-top: 20px;
-        }
-
-        .price-ticks span {
-            padding: 13px;
-        }
-    </style>
 </head>
 
 <body class="map-page">
     <header class="header">
-            <nav class="nav">
-                <div class="logo">
-                    <ul>
-                        <a href="{{ url_for('index') }}"><i class="fa-solid fa-house"></i></a>
-                        <div class="nav-logo">HouseSigma</div>
-                    </ul>
-                </div>
-                <div class="nav-menu" id="navmenu">
-                    <ul>
-                        <li><a href="{{ url_for('search') }}">Map Search</a></li>
-                        <li><a href="{{ url_for('markettrends') }}">Market Trends</a></li>
-                        <li><a href="{{ url_for('homevalues') }}">Home Valuation</a></li>
-                        <li><a href="{{ url_for('login') }}">Login</a></li>
-                        <li><a href="{{ url_for('join') }}">Join</a></li>
-                    </ul>
-                </div>
-                <div class="nav-button">
-                    <button class="btn white-btn"><a href="{{ url_for('login') }}">Login</a></button>
-                    <button class="btn white-btn"><a href="{{ url_for('join') }}">Join</a></button>
-                </div>  
-            </nav>
-       
-            <div class="wrapper">
+        <nav class="nav">
+            <div class="logo">
+                <ul>
+                    <a href="{{ url_for('index') }}"><i class="fa-solid fa-house"></i></a>
+                    <div class="nav-logo">HouseSigma</div>
+                </ul>
+            </div>
+            <div class="nav-menu" id="navmenu">
+                <ul>
+                    <li><a href="{{ url_for('search') }}">Map Search</a></li>
+                    <li><a href="{{ url_for('markettrends') }}">Market Trends</a></li>
+                    <li><a href="{{ url_for('homevalues') }}">Home Valuation</a></li>
+                </ul>
+            </div>
+            <div class="nav-button">
+                <button class="btn login"><a href="{{ url_for('login') }}">Log in</a></button>
+                <button class="btn join"><a href="{{ url_for('join') }}">Join</a></button>
+            </div>
+        </nav>
+
+        <div class="wrapper">
             <h2>Price</h2>
             <div class="price-input">
                 <div class="field">
@@ -276,15 +69,15 @@
             <button onclick="fetchData()">Apply</button>
         </div>
         <div class="filter-section">
-                <select id="saletype">
-                    <option>For Sale</option>
-                    <option>For Rent</option>
-                </select>
-                <select id="status">
-                    <option>All</option>
-                    <option>Active</option>
-                    <option>Sold</option>
-                </select>
+            <select id="saletype">
+                <option>For Sale</option>
+                <option>For Rent</option>
+            </select>
+            <select id="status">
+                <option>All</option>
+                <option>Active</option>
+                <option>Sold</option>
+            </select>
             <select id="numBedrooms">
                 <option value="">Bedrooms</option>
                 <option value="0">0+</option>
@@ -361,10 +154,10 @@
             let numBedrooms = document.getElementById('numBedrooms').value || 2;
             let numBathrooms = document.getElementById('numBathrooms').value || 2;
             let basement = document.getElementById('basement').value;
-            let garage = document.getElementById('garage').value ;
+            let garage = document.getElementById('garage').value;
             let numGarageSpaces = document.getElementById('numGarageSpaces').value || 2;
             const url = `/get_listings?cluster=${cluster}&precision=10&limit=10&minPrice=${minPrice}&maxPrice=${maxPrice}&numBedrooms=${numBedrooms}&numBathrooms=${numBathrooms}&basement=${basement}&numGarageSpaces=${numGarageSpaces}&garage=${garage}`;
-       
+
 
             fetch(url)
                 .then(response => response.json())
@@ -373,9 +166,9 @@
                     displayListings(data);
                 })
                 .catch(error => console.error('Error:', error));
-            }
+        }
 
-        
+
 
         function displayListings(data) {
             const listingsContainer = document.getElementById('listings-container');
