@@ -14,6 +14,10 @@ API_ENDPOINT = 'https://api.repliers.io/listings'
 def index():
     return render_template('index.html')
 
+@app.route('/home')
+def header():
+    return render_template('header.html')
+
 @app.route('/get_listings')
 def get_listings():
     cluster = request.args.get('cluster', 'true')

@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Real Estate Website{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="index-page">
-    <header>
+    <!-- <header>
         <nav class="nav">
             <div class="logo">
                 <ul>
@@ -28,8 +28,50 @@
                 <button class="btn join"><a href="{{ url_for('join') }}">Join</a></button>
             </div>  
         </nav>
-    </header>
+    </header> -->
+{% include 'header.html' %}
 
+<div class="container px-4 py-5" id="featured-3">
+    <h2 class="title">
+        Tailored Solutions for <br>Every <span style="color:#35008F;">Real Estate Professional.</span>                    </h2>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#collection"></use></svg>
+        </div>
+        <span class="icon-group -contained">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M4 13h3v2H4zm5 2h3v-2H9zm-5 4h3v-2H4zm5 0h3v-2H9zM4 7h3V5H4zm5 0h3V5H9zm-5 4h3V9H4zm5 0h3V9H9zm15-3v16H0V3a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v2h5a3 3 0 0 1 3 3zM14 3a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v19h12zm8 5a1 1 0 0 0-1-1h-5v15h6zm-4 7h2v-2h-2zm0 4h2v-2h-2zm0-8h2V9h-2z" fill="#ff8400" opacity="1" data-original="#000000" class=""></path></g></svg>        </span>
+        <h2>Featured title</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon" style="background-color: #28a3b3; background-image: none;">
+            <svg class="bi" width="1em" height="1em"><use xlink:href="#people-circle"></use></svg>
+        </div>      
+        <h2>Featured title</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+      <div class="feature col">
+        <div class="feature-icon bg-primary bg-gradient">
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#toggles2"></use></svg>
+        </div>
+        <h2>Featured title</h2>
+        <p>Paragraph of text beneath the heading to explain the heading. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
+        <a href="#" class="icon-link">
+          Call to action
+          <svg class="bi" width="1em" height="1em"><use xlink:href="#chevron-right"></use></svg>
+        </a>
+      </div>
+    </div>
+  </div>
     <main>
         {% block content %}
         {% endblock %}
