@@ -1,75 +1,231 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Real Estate Website{% endblock %}</title>
     <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body class="index-page">
-    <!-- <header>
-        <nav class="nav">
-            <div class="logo">
-                <ul>
-                    <a href="{{ url_for('index') }}"><i class="fa-solid fa-house"></i></a>
-                    <div class="nav-logo">HouseSigma</div>
-                </ul>
-            </div>
-            <div class="nav-menu" id="navmenu">
-                <ul>
-                    <li><a href="{{ url_for('search') }}">Map Search</a></li>
-                    <li><a href="{{ url_for('markettrends') }}">Market Trends</a></li>
-                    <li><a href="{{ url_for('homevalues') }}">Home Valuation</a></li>
-                </ul>
-            </div>
-            <div class="nav-button">
-                <button class="btn login"><a href="{{ url_for('login') }}">Login</a></button>
-                <button class="btn join"><a href="{{ url_for('join') }}">Join</a></button>
-            </div>  
-        </nav>
-    </header> -->
-{% include 'header.html' %}
 
-<div class="container px-4 py-5" id="featured-3">
-    <h2 class="title">
-        Tailored Solutions for <br>Every <span style="color:#35008F;">Real Estate Professional.</span>                    </h2>
-    <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-        <div class="feature col" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <div style="min-width: 3.5rem; max-width: 3.5rem; height: 3.5rem;">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="100%" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve">
-                    <g>
-                        <path d="M.213 9.145a1 1 0 0 1 .171-1.404l8.535-6.679a4.99 4.99 0 0 1 6.162 0l8.535 6.679a1 1 0 0 1-1.232 1.576l-8.535-6.679a2.993 2.993 0 0 0-3.697 0L1.616 9.316a1 1 0 0 1-1.403-.171Zm3.524 8.89C1.571 18.626 0 20.714 0 23a1 1 0 1 0 2 0c0-1.379.973-2.684 2.263-3.035a1 1 0 1 0-.526-1.93Zm16.525 0a1 1 0 0 0-.526 1.93c1.29.352 2.263 1.656 2.263 3.035a1 1 0 1 0 2 0c0-2.286-1.571-4.374-3.737-4.965ZM4.499 11a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm17.5 2.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Zm-10-5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 7c-2.757 0-5 2.243-5 5v3a1 1 0 1 0 2 0v-3c0-1.654 1.346-3 3-3s3 1.346 3 3v3a1 1 0 1 0 2 0v-3c0-2.757-2.243-5-5-5Z" fill="#ff8400" opacity="1" data-original="#000000"></path>
-                    </g>
-                </svg>
-            </div>
-            
-            <h2>Agents and Brokers</h2>
-            <p>Accelerate deal closure and enhance client satisfaction.</p>
-        </div>
-        
+    {% include 'header.html' %}
 
-      <div class="feature col">
-        
-        <h2>Brokerages</h2>
-        <p>Boost your brokerage’s efficiency
-            and profitability with scalable AI tools.</p>
-      
-      </div>
-      <div class="feature col">
-        
-        <h2>Investors</h2>
-        <p>Gain a competitive edge with
-            predictive market analytics. We'll add onto it with another sentence and probably just keep going until we run out of words.</p>
-     
-      </div>
+    <div class="starting">
+        <p
+            style="color: #35008F; border: 2px solid #3b0099; display: inline-block; padding: 4px 8.8px; border-radius: 20px; margin-left: 30px;">
+            WANT TO GENERATE A PROPERTY REPORT?
+        </p>
     </div>
-  </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="ohio-widget dynamic-text -left" id="sc-dynamic-text-66cedad8de8be" data-dynamic-text="true"
+                    data-dynamic-text-options="{&quot;strings&quot;:[&quot;Transactions.&quot;],&quot;loop&quot;:&quot;yes&quot;,&quot;typeSpeed&quot;:140,&quot;backDelay&quot;:5000,&quot;backSpeed&quot;:35}">
+                    <span style="color:#35008F; font-size: 45.666px; font-weight: bold;" >Revolutionizing Real Estate:</span> <span style="color:#080808; font-size: 45.666px; font-weight: bold;>Smarter
+                    Decisions, Seamless </span> <br> <span class="dynamic">Transactions.</span> <span class="typed-cursor"
+                        style="animation-iteration-count: infinite;" >|</span>
+                </div>
+                <div class="elementor-element elementor-element-916d89a elementor-widget elementor-widget-text-editor"
+                    data-id="916d89a" data-element_type="widget" data-widget_type="text-editor.default">
+                    <div class="elementor-widget-container">
+                        <p style="text-align: left;"><span style="font-weight: 400;">Unlock the full
+                                potential of your real estate business with AI-driven insights and
+                                tools.</span></p>
+                    </div>
+                </div>
+                <div class="elementor-element elementor-element-559eadb elementor-widget elementor-widget-ohio_button"
+                    data-id="559eadb" data-element_type="widget" data-widget_type="ohio_button.default">
+                    <div class="elementor-widget-container">
+                        <div class="ohio-widget-holder -left">
+                            <a href="#demo" target="_blank" class="ohio-widget button -with-shadow">Join
+                                to Wait-list</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="elementor-element elementor-element-5e76cd3 elementor-widget elementor-widget-spacer"
+                    data-id="5e76cd3" data-element_type="widget" data-widget_type="spacer.default">
+                    <div class="elementor-widget-container">
+                        <div class="elementor-spacer">
+                            <div class="elementor-spacer-inner"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-b6551b7"
+                    data-id="b6551b7" data-element_type="column"
+                    data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="elementor-widget-wrap elementor-element-populated">
+                        <div class="elementor-element elementor-element-896568c elementor-widget elementor-widget-spacer"
+                            data-id="896568c" data-element_type="widget" data-widget_type="spacer.default">
+                            <div class="elementor-widget-container">
+                                <div class="elementor-spacer">
+                                    <div class="elementor-spacer-inner"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex align-items-center justify-content-center">
+                <img src="static/QRealtor_hero.png" alt="QRealtor Logo" class="img-fluid"
+                    style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+
+
+
+    <h2 class="title">
+        Tailored Solutions for <br>Every <span style="color:#35008F;">Real Estate Professional.</span> </h2>
+    <div class="container-fluid" style="background-color: #fdf8f4" ;>
+        <div class="row g-4 py-5 row-cols-1 row-cols-lg-3" style="width: 100%; margin: 0;">
+            <div class="feature col"
+                style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <div
+                    style="background-color: #fdecd8; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                        height="24" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512"
+                        xml:space="preserve">
+                        <g>
+                            <path
+                                d="M.213 9.145a1 1 0 0 1 .171-1.404l8.535-6.679a4.99 4.99 0 0 1 6.162 0l8.535 6.679a1 1 0 0 1-1.232 1.576l-8.535-6.679a2.993 2.993 0 0 0-3.697 0L1.616 9.316a1 1 0 0 1-1.403-.171Zm3.524 8.89C1.571 18.626 0 20.714 0 23a1 1 0 1 0 2 0c0-1.379.973-2.684 2.263-3.035a1 1 0 1 0-.526-1.93Zm16.525 0a1 1 0 0 0-.526 1.93c1.29.352 2.263 1.656 2.263 3.035a1 1 0 1 0 2 0c0-2.286-1.571-4.374-3.737-4.965ZM4.499 11a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm17.5 2.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Zm-10-5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 7c-2.757 0-5 2.243-5 5v3a1 1 0 1 0 2 0v-3c0-1.654 1.346-3 3-3s3 1.346 3 3v3a1 1 0 1 0 2 0v-3c0-2.757-2.243-5-5-5Z"
+                                fill="#ff8400" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h2 style="margin: 16px 0px 0px; font-family: sans-serif; font-size: 20px; font-weight: bold;">
+                    Agents and Brokers</h2>
+                <p style="margin: 8px 0px 0px; font-size: 16.4px">Accelerate deal closure and enhance client
+                    satisfaction.</p>
+            </div>
+
+            <div class="feature col"
+                style="display: flex; flex-direction: column; align-items: center; text-align: center; border-left: 1px solid #7A7A7A; border-right: 1px solid #7A7A7A;  ">
+                <div
+                    style="background-color: #fdecd8; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                        height="24" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512"
+                        xml:space="preserve">
+                        <g>
+                            <path
+                                d="M.213 9.145a1 1 0 0 1 .171-1.404l8.535-6.679a4.99 4.99 0 0 1 6.162 0l8.535 6.679a1 1 0 0 1-1.232 1.576l-8.535-6.679a2.993 2.993 0 0 0-3.697 0L1.616 9.316a1 1 0 0 1-1.403-.171Zm3.524 8.89C1.571 18.626 0 20.714 0 23a1 1 0 1 0 2 0c0-1.379.973-2.684 2.263-3.035a1 1 0 1 0-.526-1.93Zm16.525 0a1 1 0 0 0-.526 1.93c1.29.352 2.263 1.656 2.263 3.035a1 1 0 1 0 2 0c0-2.286-1.571-4.374-3.737-4.965ZM4.499 11a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm17.5 2.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Zm-10-5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 7c-2.757 0-5 2.243-5 5v3a1 1 0 1 0 2 0v-3c0-1.654 1.346-3 3-3s3 1.346 3 3v3a1 1 0 1 0 2 0v-3c0-2.757-2.243-5-5-5Z"
+                                fill="#ff8400" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h2 style="margin: 16px 0px 0px; font-family: sans-serif; font-size: 20px; font-weight: bold;">
+                    Brokerages</h2>
+                <p style="margin: 8px 0px 0px; font-size: 16.4px">Boost your brokerage’s efficiency and
+                    profitability with scalable AI tools.</p>
+            </div>
+
+            <div class="feature col"
+                style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+                <div
+                    style="background-color: #fdecd8; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24"
+                        height="24" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512"
+                        xml:space="preserve">
+                        <g>
+                            <path
+                                d="M.213 9.145a1 1 0 0 1 .171-1.404l8.535-6.679a4.99 4.99 0 0 1 6.162 0l8.535 6.679a1 1 0 0 1-1.232 1.576l-8.535-6.679a2.993 2.993 0 0 0-3.697 0L1.616 9.316a1 1 0 0 1-1.403-.171Zm3.524 8.89C1.571 18.626 0 20.714 0 23a1 1 0 1 0 2 0c0-1.379.973-2.684 2.263-3.035a1 1 0 1 0-.526-1.93Zm16.525 0a1 1 0 0 0-.526 1.93c1.29.352 2.263 1.656 2.263 3.035a1 1 0 1 0 2 0c0-2.286-1.571-4.374-3.737-4.965ZM4.499 11a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm17.5 2.5a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Zm-10-5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5Zm0 7c-2.757 0-5 2.243-5 5v3a1 1 0 1 0 2 0v-3c0-1.654 1.346-3 3-3s3 1.346 3 3v3a1 1 0 1 0 2 0v-3c0-2.757-2.243-5-5-5Z"
+                                fill="#ff8400" opacity="1" data-original="#000000"></path>
+                        </g>
+                    </svg>
+                </div>
+                <h2 style="margin: 16px 0px 0px; font-family: sans-serif; font-size: 20px; font-weight: bold;">
+                    Property Managers</h2>
+                <p style="margin: 8px 0px 0px; font-size: 16.4px">Enhance property management operations with
+                    advanced AI.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="py-5" style="background-color: #9690A214" ;>
+        <div class="row">
+            <div class="col-12 col-md-4 mb-3">
+                <div class="footerlogo">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-md-0 text-dark text-decoration-none">
+                        <img src="static/QRealtor Logo.png" alt="QRealtor Logo" width="204.16" height="65.98"
+                            style="padding-left: 0px;">
+                    </a>
+                </div>
+
+
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;">Unlock the full potential of your real estate business with
+                            AI-driven insights and tools. </a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;"> Follow us on,</a></li>
+                </ul>
+
+                <!-- Social Media Icons -->
+                <div class="mt-3 d-flex">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fqrealtor.ai%2F" target="_blank"
+                        class="text-body-secondary me-3 d-flex align-items-center justify-content-center rounded-circle border border-dark"
+                        style="width: 40px; height: 40px; text-decoration: none;">
+                        <i class="fa-brands fa-facebook-f text-dark"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fqrealtor.ai%2F&amp;title=QRealtor&amp;source=QRealtor"
+                        target="_blank"
+                        class="text-body-secondary me-3 d-flex align-items-center justify-content-center rounded-circle border border-dark"
+                        style="width: 40px; height: 40px; text-decoration: none;">
+                        <i class="fa-brands fa-linkedin text-dark"></i>
+                    </a>
+                    <a href="https://twitter.com/intent/tweet?text=QRealtor,+https%3A%2F%2Fqrealtor.ai%2F"
+                        target="_blank"
+                        class="text-body-secondary d-flex align-items-center justify-content-center rounded-circle border border-dark"
+                        style="width: 40px; height: 40px; text-decoration: none;">
+                        <i class="fa-brands fa-x-twitter text-dark"></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-4 mb-3"> <!-- Adjusted to col-12 and col-md-4 -->
+                <h5>Useful Links</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;">Our Features</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;">What are our Solutions?</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;">Start a Free Demo</a></li>
+                </ul>
+            </div>
+
+            <div class="col-12 col-md-4 mb-3"> <!-- Adjusted to col-12 and col-md-4 -->
+                <h5>Get In Touch</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary"
+                            style="color: #7A7A7A;">Email Us:
+                            hello@qrealtor.ai</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+
     <main>
-        {% block content %}
+        {% block content %}s
         {% endblock %}
     </main>
 
+
+
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
+
 </html>
