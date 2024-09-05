@@ -13,7 +13,7 @@
 
 <body class="index-page">
     {% include 'header.html' %}
-    <div class="row featurette" style="padding: 100px; background: linear-gradient(to right, #e8ddfa, #faf8f8);">
+    <div class="row featurette">
         <!-- Text Column -->
         <div class="col-md-5" style="padding: 0px 20px;">
 
@@ -77,7 +77,7 @@
     </div>
 
     <div class="row featurette1" style="margin: 0px 218px;">
-        <div class="col-md-3 order-md-2" style="padding: 200px 20px;">
+        <div class="col-md-3 order-md-2 custom-padding">
             <p
                 style="color: #35008F; border: 2px solid #3b0099; display: inline-block; padding: 4px 8.8px; font-size: 14.4px; border-radius: 20px;">
                 FEATURE 01
@@ -96,7 +96,7 @@
     </div>
 
     <div class="row featurette2" style="margin: 0px 218px;">
-        <div class="col-md-3 order-md-2" style="padding: 200px 64px 0px 0px;">
+        <div class="col-md-3 order-md-2 custom-padding">
             <p
                 style="color: #35008F; border: 2px solid #3b0099; display: inline-block; padding: 4px 8.8px; font-size: 14.4px; border-radius: 20px;">
                 FEATURE 02
@@ -115,7 +115,7 @@
     </div>
 
     <div class="row featurette3" style="margin: 0px 218px;">
-        <div class="col-md-3 order-md-2" style="padding: 200px 64px 0px 0px;">
+        <div class="col-md-3 order-md-2 custom-padding">
             <p
                 style="color: #35008F; border: 2px solid #3b0099; display: inline-block; font-size: 14.4px; padding: 4px 8.8px; border-radius: 20px; ">
                 FEATURE 03
@@ -133,7 +133,7 @@
     </div>
 
     <div class="row featurette4" style="margin: 0px 218px;">
-        <div class="col-md-3 order-md-1" style="padding: 200px 64px 0px 0px;">
+        <div class="col-md-3 order-md-1 custom-padding">
             <p
                 style="color: #35008F; border: 2px solid #3b0099; display: inline-block; font-size: 14.4px; padding: 4px 8.8px; border-radius: 20px; ">
                 FEATURE 04
@@ -155,7 +155,7 @@
 
 
     <!-- carousel starts -->
-    <div class="carouselintro p-5 pb-1" style="background-color: #fdf8f4;">
+    <div class="carouselintro p-5 pb-1 background-color">
 
         <p
             style="color: #35008F; border: 2px solid #3b0099; display: inline-block; font-size: 14.4px; padding: 4px 8.8px; border-radius: 20px; ">
@@ -165,7 +165,7 @@
             Tailored Solutions for <br>Every <span style="color:#35008F; font-size: 39px; font-weight: bold;">Real
                 Estate Professional.</span> </h2>
     </div>
-    <div class="container-fluid" style="background-color: #fdf8f4; padding: 40px 20px 0px 20px; margin: 0;">
+    <div class="container-fluid background-color custom-spacing">
         <div class="row g-0 w-100 m-0 pb-5">
 
             <div class="feature col"
@@ -264,9 +264,8 @@
                 Send
             </button>
         </div>
-        <div class="col-md-5 order-md-1 p-3 mb-4" style="background-color: #eeedfd; border-radius: 10px;">
-
-            <img src="static\QRealtor-Demo_.png" alt="Transaction" class="img-fluid mx-auto d-block">
+        <div class="col-md-5 order-md-1 p-3 mb-4 custom-style">
+            <img src="static/QRealtor-Demo_.png" alt="Transaction" class="img-fluid mx-auto d-block">
         </div>
 
     </div>
@@ -274,7 +273,7 @@
 
 
     <!-- testimonials starts -->
-    <div class="testimonials" style="background-color: #fdf8f4;">
+    <div class="testimonials background-color">
         <div class="container">
             <div class="row">
                 <!-- Our Testimonials Section -->
@@ -599,7 +598,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
   
-        
+    <style>
+        .featurette {
+          padding: 100px;
+          background: linear-gradient(to right, #e8ddfa, #faf8f8);
+        }
+
+        .custom-padding {
+    padding: 200px 20px;
+  }
+
+  .background-color {
+    background-color: #fdf8f4;
+  }
+
+  .custom-spacing {
+    padding: 40px 20px 0px 20px;
+    margin: 0;
+  }
+
+  .custom-style {
+    background-color: #eeedfd;
+    border-radius: 10px;
+  }
+      </style>    
 </body>
 
 </html>
