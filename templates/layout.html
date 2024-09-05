@@ -27,16 +27,15 @@
             </div>
 
 
-            <h2 class="featurette-heading" style="color: #35008F; font-size: 4.3vw; font-weight: bold;">
-                Revolutionizing Real Estate:
-                <span style="color: #000000; font-size: 4.3vw; font-weight: bold;">
-                    Smarter Decisions, Seamless <br>
-                    <span
-                        style="display: inline-block; border-right: 3px solid #000; white-space: nowrap; overflow: hidden; animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;">
-                        Transactions.
+            <div class="container mt-5">
+                <h2 class="featurette-heading" style="color: #35008F; font-size: 4.3vw; font-weight: bold;">
+                    Revolutionizing Real Estate:
+                    <span style="color: #000000; font-size: 4.3vw; font-weight: bold;">
+                        Smarter Decisions, Seamless <br>
+                        <span class="auto-type"></span>
                     </span>
-                </span>
-            </h2>
+                </h2>
+            </div>
             <p class="lead"
                 style="font-size: 18px; font-family: roboto, sans-serif; padding: 18px 0px; color: #7A7A7A;">
                 Unlock the full potential of your real estate business with AI-driven insights and tools.
@@ -53,32 +52,12 @@
                 style="max-width: 100%; height: auto;">
         </div>
     </div>
-    <!-- Inline style for typing effect -->
-    <style>
-        @keyframes typing {
-            from {
-                width: 0;
-            }
-            to {
-                width: 10ch; /* Adjust based on text length */
-            }
-        }
-        @keyframes blink-caret {
-            from, to {
-                border-color: transparent;
-            }
-            50% {
-                border-color: black;
-            }
-        }
-        .typing-effect {
-            display: inline-block;
-            border-right: 3px solid black;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
-        }
-    </style>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+    
+   
 
 
     <!-- feature starts -->
@@ -175,9 +154,9 @@
     <!-- feature ends -->
 
 
-
     <!-- carousel starts -->
-    <div class="carouselintro" style="padding: 40px 40px 1px 40px; background-color: #fdf8f4">
+    <div class="carouselintro p-5 pb-1" style="background-color: #fdf8f4;">
+
         <p
             style="color: #35008F; border: 2px solid #3b0099; display: inline-block; font-size: 14.4px; padding: 4px 8.8px; border-radius: 20px; ">
             WHAT ARE THE SOLUTIONS?
@@ -187,7 +166,8 @@
                 Estate Professional.</span> </h2>
     </div>
     <div class="container-fluid" style="background-color: #fdf8f4; padding: 40px 20px 0px 20px; margin: 0;">
-        <div class="row g-0 w-100 m-0" style="padding: 0 0 64px; margin: 0;">
+        <div class="row g-0 w-100 m-0 pb-5">
+
             <div class="feature col"
                 style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0; margin: 0;">
                 <div
@@ -246,10 +226,9 @@
     <!-- carousel ends -->
 
 
-
     <!-- demo starts -->
     <div class="row featurette3" style=" margin: 50px 25px 50px 200px">
-        <div class="col-md-7 order-md-2" style="padding: 35px;">
+        <div class="col-md-7 order-md-2 p-4">
             <div class="col-md-7 order-md-2">
                 <p
                     style="color: #35008F; border: 2px solid #3b0099; display: inline-block; font-size: 14.4px; padding: 4px 8.8px; border-radius: 20px;">
@@ -281,11 +260,12 @@
                     style="background-color: #f7f7f9; width: 550px; height: 48px; padding: 0px 16px; font-size: 0.9rem; font-weight: 500; cursor: default; color: #161519;">
             </div>
             <button type="submit" class="btn btn-primary"
-                style="color: #35008F; background-color: #ffffff; font-size: 16px; width: 550px; font-weight: bold; height: 48px; padding: 0px 18.4px; border: 2px solid #35008F;">
+                style="color: #35008F; background-color: #ffffff; font-size: 16px; width: 550px; margin-top: 15px; font-weight: bold; height: 48px; padding: 0px 18.4px; border: 2px solid #35008F;">
                 Send
             </button>
         </div>
-        <div class="col-md-5 order-md-1" style="padding: 10px; margin: 0px 0px 34px; background-color: #eeedfd;">
+        <div class="col-md-5 order-md-1 p-3 mb-4" style="background-color: #eeedfd; border-radius: 10px;">
+
             <img src="static\QRealtor-Demo_.png" alt="Transaction" class="img-fluid mx-auto d-block">
         </div>
 
@@ -293,9 +273,8 @@
     <!-- demo ends -->
 
 
-
     <!-- testimonials starts -->
-    <div class="testimonials" style="background-color: #fdf8f4; padding: 0;">
+    <div class="testimonials" style="background-color: #fdf8f4;">
         <div class="container">
             <div class="row">
                 <!-- Our Testimonials Section -->
@@ -423,6 +402,14 @@
     <!-- testimonials ends -->
 
 <script>
+
+      // Initialize Typed.js
+      var typed = new Typed(".auto-type", {
+            strings: ["Transactions."],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        });
     let currentSection = 0;
     const sections = ['RealEstate', 'Codequality', 'Design'];
     const totalSections = sections.length;
@@ -459,8 +446,6 @@
     // Initially show the first section
     showSection(0);
 </script>
-
-
 
 
     <!-- contact form starting -->
@@ -539,7 +524,6 @@
 
 
 
-
     <!-- footer starting -->
     <footer class="py-5 px-5 bg-light">
         <div class="row">
@@ -613,9 +597,9 @@
         {% endblock %}
     </main>
 
-
-
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js"></script>
+  
+        
 </body>
 
 </html>
